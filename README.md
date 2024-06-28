@@ -26,6 +26,12 @@ I will not go into it, but you will need to have PHP (I prefer locally to instal
 
 	  `php artisan key:generate`
 
+I've made edits to the normal `.env.example` file based on what we need for this project. Since we are using a SQLite DB I have set up the path to my implementation in it. You will need to update the absolute path to yours if you are doing the same by changing the `DB_DATABASE=` in the `.env` file.
+
+You may want to be able to tinker with the SQLite database. For this, you'll need to install SQLite locally. I recommend following the instructions at this link to get SQLite:
+
+- [SQLite Tutorialspoint](https://www.tutorialspoint.com/sqlite/sqlite_installation.htm)
+
 4. We need to run our database migrations so that our database exists
   
     `php artisan migrate`
