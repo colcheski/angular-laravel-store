@@ -16,7 +16,7 @@ I will not go into it, but you will need to have PHP (I prefer locally to instal
 - [Node.js (Includes NPM)](https://nodejs.org/en)
 
 #### Backend
-1. Navaigate to the `/backend` directory
+1. Navigate to the `/backend` directory
 
 2. We need our composer dependencies. Run `composer update`
 
