@@ -32,6 +32,10 @@ You may want to be able to tinker with the SQLite database. For this, you'll nee
 
 - [SQLite Tutorialspoint](https://www.tutorialspoint.com/sqlite/sqlite_installation.htm)
 
+If you'd rather a visual tool, for VSCode I like SQLite Viewer in the extension marketplaceName
+
+- [SQLite Viewer](https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer)
+
 4. We need to run our database migrations so that our database exists
   
     `php artisan migrate`
