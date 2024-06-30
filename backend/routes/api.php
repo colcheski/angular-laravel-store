@@ -28,5 +28,6 @@ Route::get('/ping', function (Request $request) {
 });
 
 Route::get('/ping_debug', function (Request $request) {
+    /** @disregard xdebug_info is part of xdebug and works fine when xdebug is installed */
     return xdebug_info();
 });

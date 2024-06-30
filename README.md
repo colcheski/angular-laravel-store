@@ -72,7 +72,7 @@ In addition to the php ini change it suggests, you will also need to add:
 
 Note that the step that tells you to restart your php server can be skipped and you can just restart the laravel server (ctrl + c then run `php artisan serve` or the local script of your choice).
 
-You will know that xdebug has been correctly installed by trying `localhost:8000/api/ping_debug` which will bring you to a page of xdebug information. Note that if you look at this route and you are using the VSCode extension Intellephense, it will not recognize the xdebug_info method. I have yet to fix this issue, but it does not cause any issues other than putting a red squiggly in your editor.
+You will know that xdebug has been correctly installed by trying `localhost:8000/api/ping_debug` which will bring you to a page of xdebug information.
 
 In VSCode you should now install the [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension and restart VSCode.
 
