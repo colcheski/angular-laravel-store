@@ -1,0 +1,4 @@
+<div style="text-align: center; margin-top: 50px;">
+    <button (click)="fetchMessage()">Fetch Message</button>
+    <div *ngIf="message.length > 0">{{ message }}</div>
+</div>
