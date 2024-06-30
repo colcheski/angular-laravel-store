@@ -60,6 +60,26 @@ If you'd like to have an all in one script that starts up your editor/IDE, runs 
 
 I've left this script here as an example of what can be done if you're lazy like me and don't want to go opening up multiple terminals and running commands every time. I have mine sitting in my users folder on Windows where my Git Bash terminal opens by default so I can just run `./localDevStart.sh` and everything will open and start for me. If you are not using the exact same paths, Git Bash, and VSCode, you'll need to change basically every part of it, but it should be easy enough to change and clear enough in its intent and steps.
 
+#### Debugging
+
+This section applies heavily to VSCode and Xdebug. If there is another way you'd like to get this done, please disregard and do your own thing!
+
+Provided is an api route that returns the html page from `phpinfo()` at (if running the default laravel development server) `localhost:8000/api/ping`. Navigate to this page in your browser and right click to inspect the page source. Copy this source and go to [Xdebug Installation Wizard](https://xdebug.org/wizard). Paste the source into the box and run it to get tailored instructions on the installation.
+
+In addition to the php ini change it suggests, you will also need to add:
+`xdebug.mode=debug`
+`xdebug.start_with_request=yes`
+
+Note that the step that tells you to restart your php server can be skipped and you can just restart the laravel server (ctrl + c then run `php artisan serve` or the local script of your choice).
+
+You will know that xdebug has been correctly installed by trying `localhost:8000/api/ping_debug` which will bring you to a page of xdebug information. Note that if you look at this route and you are using the VSCode extension Intellephense, it will not recognize the xdebug_info method. I have yet to fix this issue, but it does not cause any issues other than putting a red squiggly in your editor.
+
+In VSCode you should now install the [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension and restart VSCode.
+
+In Chrome you should install [Xdebug Helper](https://chromewebstore.google.com/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc) and turn it on to debug on the page you want to debug.
+
+After you have completed these steps you should be able to go to the debug view in vscode (in the side panel) and choose "Listen for Xdebug" in the Run and Debug dropdown on the top. I found that this option hadn't shown up in VSCode until I went to the `.vscode/launch.json` file that was generated throughout this process. Once that is complete you should be able to add debug breakpoints in the gutter on the side of php files. If you have problems with this I urge you to look over the documentation.
+
 ### Backend
 Refer to the [backend README](backend/README.md) for setup instructions.
 
