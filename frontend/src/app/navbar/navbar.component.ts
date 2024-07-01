@@ -19,7 +19,7 @@ export class NavbarComponent {
     console.log("I'm testing LOGIN!");
     this.http.get<any>(`${environment.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true }).subscribe({
       next: (value) => {
-        console.log(value);
+        console.log('csrf', value);
       },
     });
   }
