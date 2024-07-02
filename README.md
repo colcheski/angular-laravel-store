@@ -47,6 +47,8 @@ If you'd rather a visual tool, for VSCode I like SQLite Viewer in the extension 
 
 2. We need our npm packages for the frontend. Run `npm install`
 
+3. Install the angular cli globally `npm install -g @angular/cli@17`.
+
 
 
 ### Local Development
