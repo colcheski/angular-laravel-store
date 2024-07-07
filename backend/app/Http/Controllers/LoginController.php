@@ -22,6 +22,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
  
             return response()->json([
+                'success' => 'true',
                 'message' => 'Authentication successful',
                 'user' => Auth::user(),
             ]);
