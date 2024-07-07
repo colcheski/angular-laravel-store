@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { LoginService } from '../login.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -14,16 +14,16 @@ import { LoginService } from '../login.service';
 })
 export class LoginComponent {
 
-  constructor(private loginService: LoginService) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   email = '';
   password = '';
 
   login() {
-    this.loginService.login(this.email, this.password);
+    this.authenticationService.login(this.email, this.password);
   }
 
   user() {
-    this.loginService.user();
+    this.authenticationService.user();
   }
 }

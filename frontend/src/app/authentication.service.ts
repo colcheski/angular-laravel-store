@@ -6,7 +6,7 @@ import { NavbarService } from './navbar.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthenticationService {
   private csrfUrl = `${environment.apiUrl}/sanctum/csrf-cookie`;
   private loginUrl = `${environment.apiUrl}/api/login`;
   private userUrl = `${environment.apiUrl}/api/user`;
