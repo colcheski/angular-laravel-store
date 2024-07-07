@@ -22,4 +22,8 @@ export class LoginComponent {
   login() {
     this.loginService.login(this.email, this.password);
   }
+
+  user() {
+    this.loginService.user();
+  }
 }

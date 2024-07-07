@@ -3,5 +3,6 @@
     <span class="spacer"></span>
     <button mat-button routerLink="/">Home</button>
     <button mat-button routerLink="/murph">Murph</button>
-    <button mat-button routerLink="/login">Login</button>
+    <button *ngIf="!this.navbarService.getLoggedInUsername()" mat-button routerLink="/login">Login</button>
+    <button *ngIf="this.navbarService.getLoggedInUsername()" mat-button>{{ this.navbarService.getLoggedInUsername() }}</button>
 </mat-toolbar>
