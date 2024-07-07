@@ -2,5 +2,5 @@ import { Environment } from "./environment.interface";
 
 export const environment : Environment = {
     production: false,
-    apiUrl: 'http://localhost:8000'
+    apiUrl: '//localhost:8000'
 };
