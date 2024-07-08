@@ -18,28 +18,6 @@ export class AuthenticationService {
     private userStateService: UserStateService
   ) {}
 
-  // loginOld(email: string, password: string): Observable<any> {
-  //   // TODO: I think we should run this as soon as they get to the site, check into this
-  //   this.http.get<any>(this.csrfUrl, { withCredentials: true }).subscribe({
-  //     next: () => {
-  //       this.http.post<any>(this.loginUrl, {
-  //         email,
-  //         password
-  //       }, { withCredentials: true }).subscribe({
-  //         next: (value) => {
-  //           // navigation service change login to username
-  //           this.userStateService.setUsername(value.user.name);
-
-  //           // redirect to home route
-  //         },
-  //         error: (err) => {
-  //           console.error(err);
-  //         }
-  //       });
-  //     },
-  //   });
-  // }
-
   login(email: string, password: string): Observable<any> {
     return this.getCSRFToken().pipe(
       switchMap(() => this.http.post<any>(
