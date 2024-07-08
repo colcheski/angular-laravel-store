@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserStateService } from './user-state.service';
 import { catchError, Observable, switchMap, tap, throwError } from 'rxjs';
+import { API_URLS } from './constants/api-urls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private csrfUrl = `${environment.apiUrl}/sanctum/csrf-cookie`;
-  private loginUrl = `${environment.apiUrl}/api/login`;
-  private logoutUrl = `${environment.apiUrl}/api/logout`;
-  private userUrl = `${environment.apiUrl}/api/user`;
-
   constructor(
     private http: HttpClient,
     private userStateService: UserStateService
@@ -21,7 +16,7 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<any> {
     return this.getCSRFToken().pipe(
       switchMap(() => this.http.post<any>(
-        this.loginUrl,
+        API_URLS.login,
         { email, password },
         { withCredentials: true })
       ),
@@ -37,11 +32,11 @@ export class AuthenticationService {
 
   // TODO: I think we should run this as soon as they get to the site, check into this
   private getCSRFToken(): Observable<any> {
-    return this.http.get<any>(this.csrfUrl, { withCredentials: true });
+    return this.http.get<any>(API_URLS.csrf, { withCredentials: true });
   }
 
   user() {
-    this.http.get<any>(this.userUrl, { withCredentials: true }).subscribe({
+    this.http.get<any>(API_URLS.user, { withCredentials: true }).subscribe({
       next: (value) => {
         console.log('User', value);
       },
@@ -52,7 +47,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.http.post<any>(this.logoutUrl, {}, { withCredentials: true }).subscribe({
+    this.http.post<any>(API_URLS.logout, {}, { withCredentials: true }).subscribe({
       next: (value) => {
         this.userStateService.setUsername(null);
       }
