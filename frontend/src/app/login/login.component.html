@@ -1,16 +1,22 @@
+<form (ngSubmit)="login()">
 <div>
     <mat-form-field>
         <mat-label>Email</mat-label>
-        <input [(ngModel)]="email" matInput>
+        <input [(ngModel)]="email" name="email" matInput required>
     </mat-form-field>
 </div>
 <div>
     <mat-form-field>
         <mat-label>Password</mat-label>
-        <input [(ngModel)]="password" matInput>
+        <input [(ngModel)]="password" name="password" type="password" matInput required>
     </mat-form-field>
 </div>
 <div>
-    <button mat-raised-button (click)="login()">Login</button>
+    <button mat-raised-button type="submit" [disabled]="isLoading">Login</button>
+</div>
+<div class="mt-1">
+    <!--TODO: This message isn't necessarily true if login fails for another reason-->
+    <span *ngIf="loginFailed" class="error">Incorrect Email / Password</span>
 </div>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
+</form>
