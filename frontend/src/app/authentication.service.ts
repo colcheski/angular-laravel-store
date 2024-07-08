@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { NavbarService } from './navbar.service';
+import { UserStateService } from './user-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,12 @@ import { NavbarService } from './navbar.service';
 export class AuthenticationService {
   private csrfUrl = `${environment.apiUrl}/sanctum/csrf-cookie`;
   private loginUrl = `${environment.apiUrl}/api/login`;
+  private logoutUrl = `${environment.apiUrl}/api/logout`;
   private userUrl = `${environment.apiUrl}/api/user`;
 
   constructor(
     private http: HttpClient,
-    private navbarService : NavbarService
+    private userStateService: UserStateService
   ) {}
 
   login(email: string, password: string) {
@@ -26,8 +27,7 @@ export class AuthenticationService {
         }, { withCredentials: true }).subscribe({
           next: (value) => {
             // navigation service change login to username
-            console.log(value);
-            this.navbarService.setLoggedInUsername(value.user.name);
+            this.userStateService.setUsername(value.user.name);
 
             // redirect to home route
           },
@@ -46,6 +46,14 @@ export class AuthenticationService {
       },
       error: (err) => {
         console.error('Unauthenticated', err);
+      }
+    })
+  }
+
+  logout() {
+    this.http.post<any>(this.logoutUrl, { withCredentials: true }).subscribe({
+      next: () => {
+        this.userStateService.setUsername(null);
       }
     })
   }

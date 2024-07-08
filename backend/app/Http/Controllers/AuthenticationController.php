@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AuthenticationController extends Controller
 {
     /**
      * Handle an authentication attempt.
@@ -29,5 +29,17 @@ class LoginController extends Controller
         }
  
         return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    public function logout(Request $request): JsonResponse
+    {
+        Auth::logout(); 
+        $request->session()->invalidate();     
+        $request->session()->regenerateToken();
+
+        return response()->json([
+            'success' => 'true',
+            'message' => 'Logout successful',            
+        ]);
     }
 }

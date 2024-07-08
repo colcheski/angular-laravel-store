@@ -1,22 +1,30 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { environment } from '../../environments/environment';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { NavbarService } from '../navbar.service';
 import { CommonModule } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { UserStateService } from '../user-state.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, RouterLink],
+  imports: [CommonModule, MatToolbarModule, MatButtonModule, RouterLink, MatMenuModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  username: string | null = null;
+
   constructor(
-    public navbarService: NavbarService
+    public userStateService: UserStateService,
+    public authenticationService: AuthenticationService
   ) {}
 
+  ngOnInit() {
+    this.userStateService.getUsername().subscribe(username => {
+      this.username = username;
+    });
+  }
 }

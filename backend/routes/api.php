@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthenticationController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -10,7 +10,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/login',  [LoginController::class, 'authenticate']);
+Route::post('/login',  [AuthenticationController::class, 'authenticate']);
+Route::post('/logout', [AuthenticationController::class, 'logout']);
 // Route::post('/login', function (Request $request) {
 //     return response()->json(['request' => $request], 200);
 // });

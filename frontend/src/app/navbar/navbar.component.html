@@ -3,6 +3,9 @@
     <span class="spacer"></span>
     <button mat-button routerLink="/">Home</button>
     <button mat-button routerLink="/murph">Murph</button>
-    <button *ngIf="!this.navbarService.getLoggedInUsername()" mat-button routerLink="/login">Login</button>
-    <button *ngIf="this.navbarService.getLoggedInUsername()" mat-button>{{ this.navbarService.getLoggedInUsername() }}</button>
+    <button *ngIf="!username" mat-button routerLink="/login">Login</button>
+    <button *ngIf="username" mat-button [matMenuTriggerFor]="account">{{ username }}</button>
+    <mat-menu #account="matMenu">
+        <button mat-menu-item (click)="this.authenticationService.logout()">Logout</button>
+      </mat-menu>
 </mat-toolbar>
