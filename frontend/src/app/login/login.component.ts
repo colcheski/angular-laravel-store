@@ -34,8 +34,4 @@ export class LoginComponent {
       }
     });
   }
-
-  user() {
-    this.authenticationService.user();
-  }
 }
