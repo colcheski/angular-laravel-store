@@ -16,7 +16,7 @@ Route::post('/logout', [AuthenticationController::class, 'logout']);
 //     return response()->json(['request' => $request], 200);
 // });
 
-Route::post('/createTestUser', function (Request $request) {
+Route::get('/createTestUser', function (Request $request) {
     $user = new User();
     $user->name = 'test';
     $user->password = Hash::make('password');

@@ -82,6 +82,16 @@ In Chrome you should install [Xdebug Helper](https://chromewebstore.google.com/d
 
 After you have completed these steps you should be able to go to the debug view in vscode (in the side panel) and choose "Listen for Xdebug" in the Run and Debug dropdown on the top. I found that this option hadn't shown up in VSCode until I went to the `.vscode/launch.json` file that was generated throughout this process. Once that is complete you should be able to add debug breakpoints in the gutter on the side of php files. If you have problems with this I urge you to look over the documentation.
 
+### Using the Application
+To start, we'll need a user. I have a route set up at http://localhost:8000/api/createTestUser
+
+Go to this URL in your browser and a test user will be created with the credentials:
+
+**Email:** test@example.com
+**Password:** password
+
+If you'd like to change this you can update the route with whatever credentials you want. This is not intended to be a normal route you'd use in a real application, but a quick and easy account creation tool.
+
 ### Backend
 Refer to the [backend README](backend/README.md) for setup instructions.
 
