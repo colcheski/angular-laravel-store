@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserStateService } from './user-state.service';
-import { catchError, Observable, switchMap, tap, throwError } from 'rxjs';
+import { catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { API_URLS } from './constants/api-urls';
 
 @Injectable({
@@ -35,6 +35,7 @@ export class AuthenticationService {
     return this.http.get<any>(API_URLS.csrf, { withCredentials: true });
   }
 
+  // TODO: We can get rid of this when we are done testing login
   user() {
     this.http.get<any>(API_URLS.user, { withCredentials: true }).subscribe({
       next: (value) => {
@@ -44,6 +45,20 @@ export class AuthenticationService {
         console.error('Unauthenticated', err);
       }
     })
+  }
+
+  checkUserSession(): Observable<any> {
+    return this.http.get<any>(API_URLS.user, { withCredentials: true }).pipe(
+      tap(response => {
+        if (response) {
+          this.userStateService.setUsername(response.name);
+        }
+      }),
+      catchError( () => {
+        this.userStateService.setUsername(null);
+        return of(null);
+      })
+    );
   }
 
   logout() {
